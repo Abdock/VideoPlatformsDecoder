@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.TikTok", "Vid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{8432BC08-EEC3-4723-A7F1-F87C0C5D0174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.YouTube", "VideoPlatform.YouTube\VideoPlatform.YouTube.csproj", "{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{8432BC08-EEC3-4723-A7F1-F87C0C5D0174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8432BC08-EEC3-4723-A7F1-F87C0C5D0174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8432BC08-EEC3-4723-A7F1-F87C0C5D0174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
