@@ -4,11 +4,11 @@ namespace Sample;
 
 public static class YouTubeSample
 {
-    public static async Task RunAsync()
+    public static async Task RunAsync(string link)
     {
         using var client = new HttpClient();
         var youtube = new YouTubeVideoService(client);
-        var url = new Uri("https://www.youtube.com/watch?v=gquRl13WryU");
+        var url = new Uri(link);
         var sourceLink = await youtube.DecodeUrlAsync(url);
         using var request = new HttpRequestMessage(HttpMethod.Head, sourceLink);
         var response = await client.SendAsync(request);
