@@ -2,11 +2,9 @@
 
 internal class SliceOperation : ISignatureModifyOperation
 {
-    public int Index { get; set; }
-
-    public string ModifySignature(string signature)
+    public string ModifySignature(string signature, int argument)
     {
-        var modifiedSignatureChars = signature.ToCharArray().Skip(Index).ToArray();
+        var modifiedSignatureChars = signature.ToCharArray().Skip(argument).ToArray();
         var modifiedSignature = string.Join("", modifiedSignatureChars);
         return modifiedSignature;
     }

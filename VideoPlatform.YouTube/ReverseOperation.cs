@@ -2,9 +2,7 @@
 
 internal class ReverseOperation : ISignatureModifyOperation
 {
-    public int Index { get; set; }
-
-    public string ModifySignature(string signature)
+    public string ModifySignature(string signature, int argument)
     {
         var modifiedSignatureChars = signature.ToCharArray().Reverse().ToArray();
         var modifiedSignature = string.Join("", modifiedSignatureChars);

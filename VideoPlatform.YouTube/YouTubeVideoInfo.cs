@@ -97,8 +97,7 @@ internal class YouTubeVideoInfo
             var functionArgument = int.Parse(_functionArgumentRegex.Match(match.Groups[0].Value).Value);
             if (functionsOperation.TryGetValue(functionName, out var value))
             {
-                value.Index = functionArgument;
-                signature = value.ModifySignature(signature);
+                signature = value.ModifySignature(signature, functionArgument);
             }
         }
 

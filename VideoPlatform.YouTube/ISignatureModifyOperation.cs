@@ -2,7 +2,5 @@
 
 internal interface ISignatureModifyOperation
 {
-    int Index { get; set; }
-    
-    string ModifySignature(string signature);
+    string ModifySignature(string signature, int argument);
 }
