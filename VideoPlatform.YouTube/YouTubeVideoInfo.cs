@@ -19,23 +19,20 @@ internal class YouTubeVideoInfo
     private readonly Regex _signatureParameterRegex = new(@"^\w+=", RegexOptions.Compiled);
     private readonly Regex _urlParameterRegex = new("&url=", RegexOptions.Compiled);
 
-    [JsonPropertyName("itag")]
-    public int Itag { get; set; }
-
     [JsonPropertyName("mimeType")]
-    public string MimeType { get; set; } = default!;
+    public required string MimeType { get; init; }
 
     [JsonPropertyName("signatureCipher")]
-    public string? SignatureCipher { get; set; }
+    public string? SignatureCipher { get; init; }
 
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
     [JsonPropertyName("width")]
-    public int Width { get; set; }
+    public int Width { get; init; }
     
     [JsonPropertyName("height")]
-    public int Height { get; set; }
+    public int Height { get; init; }
  
     [JsonIgnore]
     public bool IsVideo => MimeType.ToLower().Contains("video");
@@ -60,7 +57,8 @@ internal class YouTubeVideoInfo
         const string queryAndSeparator = "&";
         var signatureParameter = cipher.Split(queryAndSeparator).First();
         var signature = _signatureParameterRegex.Replace(signatureParameter, "");
-        var decodeUriFunction = _decodeUriRegex.Match(baseJs).Groups[1].Value;
+        const int argumentIndex = 1;
+        var decodeUriFunction = _decodeUriRegex.Match(baseJs).Groups[argumentIndex].Value;
         var calledFunctionRegexes = new[]
         {
             @"\W" + Regex.Escape(decodeUriFunction) + @"=function(\(\w+\)\{[^\{]+\})",
@@ -73,7 +71,7 @@ internal class YouTubeVideoInfo
             .SelectMany(function => _calledFunctionRegex.Matches(function))
             .ToList();
         var calledFunctionsNames = calledFunctionsWithArguments
-            .Select(function => _calledFunctionNameRegex.Match(function.Groups[1].Value).Value)
+            .Select(function => _calledFunctionNameRegex.Match(function.Groups[argumentIndex].Value).Value)
             .ToHashSet();
         var functionsOperation = new Dictionary<string, ISignatureModifyOperation>();
         foreach (var functionName in calledFunctionsNames)
