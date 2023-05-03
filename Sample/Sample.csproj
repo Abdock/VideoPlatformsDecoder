@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\VideoPlatform.TikTok\VideoPlatform.TikTok.csproj" />
+      <ProjectReference Include="..\VideoPlatform.YouTube\VideoPlatform.YouTube.csproj" />
     </ItemGroup>
 
 </Project>
