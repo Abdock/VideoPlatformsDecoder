@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using VideoPlatform.Logger;
 
 namespace VideoPlatform.YouTube;
 
@@ -18,10 +19,12 @@ public class YouTubeVideoService : IVideoService
     private const string AdaptiveFormats = "adaptiveFormats\":";
     private readonly Regex _baseJsRegex = new(@"/[\w\/\d\.]+base.js", RegexOptions.Compiled);
     private const int HdVideoResolution = 1280*720;
+    private readonly ILogger _logger;
 
-    public YouTubeVideoService(HttpClient client)
+    public YouTubeVideoService(HttpClient client, ILogger logger)
     {
         _client = client;
+        _logger = logger;
         _headers = new Dictionary<string, string>
         {
             ["User-Agent"] = "PostmanRuntime/7.32.2",

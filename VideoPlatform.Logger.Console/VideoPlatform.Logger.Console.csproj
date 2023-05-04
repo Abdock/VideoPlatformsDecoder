@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\VideoPlatform.Logger\VideoPlatform.Logger.csproj" />
-      <ProjectReference Include="..\VideoPlatform\VideoPlatform.csproj" />
     </ItemGroup>
 
 </Project>

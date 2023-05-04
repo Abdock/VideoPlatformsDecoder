@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using VideoPlatform.Logger.Console;
 using VideoPlatform.YouTube;
 
 namespace VideoPlatform.Test;
@@ -20,7 +21,8 @@ public class YouTubeTests
     {
         //Arrange
         const HttpStatusCode expectedResult = HttpStatusCode.OK;
-        IVideoService youtube = new YouTubeVideoService(_client);
+        var logger = new ConsoleLogger();
+        IVideoService youtube = new YouTubeVideoService(_client, logger);
         var sourceLink = await youtube.DecodeUrlAsync(new Uri(link));
         using var request = new HttpRequestMessage(HttpMethod.Head, sourceLink);
         //Act
@@ -28,7 +30,7 @@ public class YouTubeTests
         //Assert
         if (response.StatusCode == HttpStatusCode.Forbidden)
         {
-            await TestContext.Out.WriteLineAsync(sourceLink.ToString());
+            await TestContext.Out.WriteLineAsync(string.Join("\n", logger.Logs));
         }
         
         Assert.That(response.StatusCode, Is.EqualTo(expectedResult));

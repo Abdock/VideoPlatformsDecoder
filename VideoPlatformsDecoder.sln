@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.YouTube", "Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.Test", "VideoPlatform.Test\VideoPlatform.Test.csproj", "{65E64F81-DD7D-4265-B785-DC178D7CC6E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.Logger", "VideoPlatform.Logger\VideoPlatform.Logger.csproj", "{910DA08F-2248-4899-AC11-B0C7EEB1D3B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.Logger.Console", "VideoPlatform.Logger.Console\VideoPlatform.Logger.Console.csproj", "{D1A4A340-B4BC-479D-8AA0-D25E9EE11582}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910DA08F-2248-4899-AC11-B0C7EEB1D3B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910DA08F-2248-4899-AC11-B0C7EEB1D3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910DA08F-2248-4899-AC11-B0C7EEB1D3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910DA08F-2248-4899-AC11-B0C7EEB1D3B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A4A340-B4BC-479D-8AA0-D25E9EE11582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A4A340-B4BC-479D-8AA0-D25E9EE11582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A4A340-B4BC-479D-8AA0-D25E9EE11582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A4A340-B4BC-479D-8AA0-D25E9EE11582}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
