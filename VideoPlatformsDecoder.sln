@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.YouTube", "VideoPlatform.YouTube\VideoPlatform.YouTube.csproj", "{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPlatform.Test", "VideoPlatform.Test\VideoPlatform.Test.csproj", "{65E64F81-DD7D-4265-B785-DC178D7CC6E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3E4BE3-EBEC-466B-A77E-806DE9D6BBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E64F81-DD7D-4265-B785-DC178D7CC6E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
