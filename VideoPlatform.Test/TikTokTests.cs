@@ -36,4 +36,10 @@ public class TikTokTests
         
         Assert.That(response.StatusCode, Is.EqualTo(expectedResult));
     }
+
+    [OneTimeTearDown]
+    public void Clear()
+    {
+        _client.Dispose();
+    }
 }
