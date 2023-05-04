@@ -129,8 +129,7 @@ public class YouTubeVideoService : IVideoService
 
     private async Task<string> ConvertUrlToSourceLink(string url)
     {
-        using var client = new HttpClient();
-        var videoHtml = await client.GetStringAsync(url);
+        var videoHtml = await _client.GetStringAsync(url);
         var videos = DeserializeYouTubeStream(videoHtml);
         var video = videos
             .OrderByDescending(video => video.Resolution)
@@ -139,7 +138,7 @@ public class YouTubeVideoService : IVideoService
         {
             var baseJsPath = _baseJsRegex.Match(videoHtml).Value;
             var baseJsUrl = $"{YouTubeHostUrl}{baseJsPath}";
-            var baseJs = await client.GetStringAsync(baseJsUrl);
+            var baseJs = await _client.GetStringAsync(baseJsUrl);
             video.DecodeSignature(baseJs);
         }
 
