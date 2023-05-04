@@ -108,7 +108,7 @@ internal class YouTubeVideoInfo
         {
             logger.LogMessage($"{nameof(match)} value: {match.Value}");
             var functionName = _calledFunctionNameRegex.Match(match.Groups[1].Value).Value;
-            var functionArgument = int.Parse(_functionArgumentRegex.Match(match.Groups[0].Value).Value);
+            var functionArgument = int.Parse(_functionArgumentRegex.Matches(match.Groups[1].Value).Last().Value);
             logger.LogMessage($"Function {functionName} arguments for function {functionArgument}");
             if (functionsOperation.TryGetValue(functionName, out var value))
             {
