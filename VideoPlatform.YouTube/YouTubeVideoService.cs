@@ -130,16 +130,22 @@ public class YouTubeVideoService : IVideoService
     private async Task<string> ConvertUrlToSourceLink(string url)
     {
         var videoHtml = await _client.GetStringAsync(url);
-        var videos = DeserializeYouTubeStream(videoHtml);
+        _logger.LogMessage($"Link: {url} html page requested, HTML:\n\n\n\n\n{videoHtml}\n\n\n\n\n");
+        var videos = DeserializeYouTubeStream(videoHtml).ToList();
+        _logger.LogMessage($"By link: {url} found {videos.Count} videos, and links for each videos:\n{string.Join("\n", videos.Select(v => v.Url ?? v.SignatureCipher))}");
         var video = videos
             .OrderByDescending(video => video.Resolution)
             .MinBy(video => Math.Abs(video.Resolution - HdVideoResolution))!;
+        _logger.LogMessage($"By link: {url} found HD video by link: {video.Url}");
         if (video.IsUrlEncoded)
         {
+            _logger.LogMessage($"HD video by link: {url} is encoded");
             var baseJsPath = _baseJsRegex.Match(videoHtml).Value;
+            _logger.LogMessage($"Base JS file from link: {url} found with path: {baseJsPath}");
             var baseJsUrl = $"{YouTubeHostUrl}{baseJsPath}";
+            _logger.LogMessage($"Base JS file url: {baseJsUrl} found from link: {url}");
             var baseJs = await _client.GetStringAsync(baseJsUrl);
-            video.DecodeSignature(baseJs);
+            video.DecodeSignature(baseJs, _logger);
         }
 
         return video.Url!;
@@ -147,7 +153,10 @@ public class YouTubeVideoService : IVideoService
 
     public async Task<Uri> DecodeUrlAsync(Uri url, CancellationToken cancellationToken = default)
     {
-        var videoUrl = $"{YouTubeVideoBaseUrl}{GetVideoId(url)}";
+        _logger.LogMessage($"Link: {url} requested to decode");
+        var videoId = GetVideoId(url);
+        var videoUrl = $"{YouTubeVideoBaseUrl}{videoId}";
+        _logger.LogMessage($"Link: {url} video id is {videoId}");
         var sourceLink = await ConvertUrlToSourceLink(videoUrl);
         return new Uri(sourceLink);
     }
