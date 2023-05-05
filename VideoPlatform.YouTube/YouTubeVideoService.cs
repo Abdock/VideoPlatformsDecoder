@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using VideoPlatform.Logger;
@@ -157,7 +158,18 @@ public class YouTubeVideoService : IVideoService
         var videoId = GetVideoId(url);
         var videoUrl = $"{YouTubeVideoBaseUrl}{videoId}";
         _logger.LogMessage($"Link: {url} video id is {videoId}");
-        var sourceLink = await ConvertUrlToSourceLink(videoUrl);
+        HttpResponseMessage response;
+        string sourceLink;
+        var retriesCount = 0;
+        do
+        {
+            sourceLink = await ConvertUrlToSourceLink(videoUrl);
+            using var request = new HttpRequestMessage(HttpMethod.Head, sourceLink);
+            response = await _client.SendAsync(request, cancellationToken);
+            ++retriesCount;
+        } while (!response.IsSuccessStatusCode);
+        
+        _logger.LogMessage($"Retries count to decode url: {retriesCount}");
         return new Uri(sourceLink);
     }
 
