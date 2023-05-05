@@ -14,4 +14,6 @@ public class ConsoleLogger : ILogger
     {
         _logs.Add(message);
     }
+
+    public void Clear() => _logs.Clear();
 }

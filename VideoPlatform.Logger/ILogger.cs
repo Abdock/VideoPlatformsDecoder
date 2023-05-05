@@ -5,4 +5,6 @@ public interface ILogger
     IReadOnlyList<string> Logs { get; }
 
     void LogMessage(string message);
+
+    void Clear();
 }
