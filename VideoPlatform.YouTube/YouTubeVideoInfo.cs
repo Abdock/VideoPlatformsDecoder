@@ -7,17 +7,19 @@ namespace VideoPlatform.YouTube;
 
 internal class YouTubeVideoInfo
 {
-    private readonly Regex _decodeUriRegex = new(@"=([$\w]+)\(decodeURIComponent\(", RegexOptions.Compiled);
-    private readonly Regex _sliceFunctionRegex = new(@"\.splice\(\d+,\w+\)", RegexOptions.Compiled);
-    private readonly Regex _swapFunctionRegex = new(@"(var\s\w=.*)\[\w+%\w+\.length", RegexOptions.Compiled);
-    private readonly Regex _functionArgumentRegex = new(@"\d+", RegexOptions.Compiled);
     private readonly Regex _calledFunctionFromObjectRegex =
         new(@"([$\w]+\.)([$\w]+\(\w+,\d+\))", RegexOptions.Compiled);
-    private readonly Regex _calledFunctionRegex = new(@"([$\w]+\(\w+,\d+\))", RegexOptions.Compiled);
+
     private readonly Regex _calledFunctionNameRegex = new(@"^\w+");
+
+    private readonly Regex _calledFunctionRegex = new(@"([$\w]+\(\w+,\d+\))", RegexOptions.Compiled);
     private readonly Regex _clearFunctionBeginRegex = new(@"^\{", RegexOptions.Compiled);
     private readonly Regex _clearFunctionEndRegex = new(@"\}{2}$", RegexOptions.Compiled);
+    private readonly Regex _decodeUriRegex = new(@"=([$\w]+)\(decodeURIComponent\(", RegexOptions.Compiled);
+    private readonly Regex _functionArgumentRegex = new(@"\d+", RegexOptions.Compiled);
     private readonly Regex _signatureParameterRegex = new(@"^\w+=", RegexOptions.Compiled);
+    private readonly Regex _sliceFunctionRegex = new(@"\.splice\(\d+,\w+\)", RegexOptions.Compiled);
+    private readonly Regex _swapFunctionRegex = new(@"(var\s\w=.*)\[\w+%\w+\.length", RegexOptions.Compiled);
     private readonly Regex _urlParameterRegex = new("&url=", RegexOptions.Compiled);
 
     [JsonPropertyName("mimeType")]
@@ -31,16 +33,16 @@ internal class YouTubeVideoInfo
 
     [JsonPropertyName("width")]
     public int Width { get; init; }
-    
+
     [JsonPropertyName("height")]
     public int Height { get; init; }
- 
+
     [JsonIgnore]
     public bool IsVideo => MimeType.ToLower().Contains("video");
 
     [JsonIgnore]
     public bool IsUrlEncoded => Url == null && SignatureCipher != null;
-    
+
     [JsonIgnore]
     public int Resolution => Width * Height;
 
@@ -79,7 +81,8 @@ internal class YouTubeVideoInfo
             .Select(function => _calledFunctionNameRegex.Match(function.Groups[argumentIndex].Value).Value)
             .ToHashSet();
         logger.LogMessage($"{nameof(calledFunctions)} value: {string.Join("; ", calledFunctions)}");
-        logger.LogMessage($"{nameof(calledFunctionsWithArguments)} value: {string.Join("; ", calledFunctionsWithArguments)}");
+        logger.LogMessage(
+            $"{nameof(calledFunctionsWithArguments)} value: {string.Join("; ", calledFunctionsWithArguments)}");
         logger.LogMessage($"{nameof(calledFunctionsNames)} value: {string.Join("; ", calledFunctionsNames)}");
         var functionsOperation = new Dictionary<string, ISignatureModifyOperation>();
         foreach (var functionName in calledFunctionsNames)
@@ -133,7 +136,7 @@ internal class YouTubeVideoInfo
         var functionDeclarationPattern = functionBegin + functionNameRegex + functionSignature;
         var functionDeclarationRegex = new Regex(functionDeclarationPattern);
         var functionDeclaration = functionDeclarationRegex.Match(js).Value;
-        
+
         functionDeclaration = _clearFunctionBeginRegex.Replace(functionDeclaration, "");
         functionDeclaration = _clearFunctionEndRegex.Replace(functionDeclaration, "");
         return functionDeclaration;

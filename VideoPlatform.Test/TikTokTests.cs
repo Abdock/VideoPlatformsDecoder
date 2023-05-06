@@ -6,15 +6,16 @@ namespace VideoPlatform.Test;
 public class TikTokTests
 {
     private HttpClient _client = null!;
-    
+
     [OneTimeSetUp]
     public void Initialize()
     {
         _client = new HttpClient();
     }
-    
+
     [TestCase("https://vm.tiktok.com/ZMYKLCMJm/")]
-    [TestCase("https://www.tiktok.com/@106sm/video/7224117086312860933?is_from_webapp=1&sender_device=pc&web_id=7207752210184209926")]
+    [TestCase(
+        "https://www.tiktok.com/@106sm/video/7224117086312860933?is_from_webapp=1&sender_device=pc&web_id=7207752210184209926")]
     [TestCase("https://www.tiktok.com/@106sm/video/7224117086312860933")]
     public async Task DecodeUrlAsync_TryDecodeCorrectTikTokUrl_HeadRequestReturnsOk(string link)
     {
@@ -33,7 +34,7 @@ public class TikTokTests
         {
             await TestContext.Out.WriteLineAsync(sourceLink.ToString());
         }
-        
+
         Assert.That(response.StatusCode, Is.EqualTo(expectedResult));
     }
 

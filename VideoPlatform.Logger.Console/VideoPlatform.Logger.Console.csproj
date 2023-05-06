@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VideoPlatform.Logger\VideoPlatform.Logger.csproj" />
+        <ProjectReference Include="..\VideoPlatform.Logger\VideoPlatform.Logger.csproj"/>
     </ItemGroup>
 
 </Project>

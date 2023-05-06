@@ -8,9 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VideoPlatform.Logger.Console\VideoPlatform.Logger.Console.csproj" />
-      <ProjectReference Include="..\VideoPlatform.TikTok\VideoPlatform.TikTok.csproj" />
-      <ProjectReference Include="..\VideoPlatform.YouTube\VideoPlatform.YouTube.csproj" />
+        <ProjectReference Include="..\VideoPlatform.Logger.Console\VideoPlatform.Logger.Console.csproj"/>
+        <ProjectReference Include="..\VideoPlatform.TikTok\VideoPlatform.TikTok.csproj"/>
+        <ProjectReference Include="..\VideoPlatform.YouTube\VideoPlatform.YouTube.csproj"/>
     </ItemGroup>
 
 </Project>
